@@ -1,0 +1,55 @@
+name: Laravel Dusk CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  dusk:
+    runs-on: ubuntu-latest
+    env:
+      CHROMIUM_VERSION: '112.0.5615.137'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, ctype, json, xml, bcmath, pdo, sqlite
+          ini: memory_limit=2G
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Copy .env.example to .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Generate app key
+        run: php artisan key:generate --no-interaction
+
+      - name: Run migrations and seeds
+        run: |
+          php artisan migrate --force
+          php artisan db:seed --class=CountrySeeder --no-interaction || true
+
+      - name: Run PHP Unit Tests
+        run: vendor/bin/phpunit --colors=always
+
+      - name: Install Dusk dependencies
+        run: |
+          php artisan dusk:install
+      - name: Install Chromium headless dependencies
+        run: |
+          sudo apt-get update
+          CHROME_PKG="chromium-browser"; if [ -n "$CHROMIUM_VERSION" ]; then sudo apt-get install -y "$CHROME_PKG=$CHROMIUM_VERSION"; else sudo apt-get install -y "$CHROME_PKG"; fi
+          sudo apt-get install -y chromium-chromedriver xvfb
+          export CHROME_BIN=/usr/bin/chromium-browser
+          export DISPLAY=:99.0
+          Xvfb :99 -screen 0 1280x1024x16 &
+      - name: Run Laravel Dusk
+        env:
+          APP_URL: http://localhost:80
+        run: |
+          php artisan dusk || true

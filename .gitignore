@@ -1,0 +1,17 @@
+/core/.env
+/core/vendor/
+/core/storage/*.key
+/core/storage/framework/cache/
+/core/storage/framework/sessions/
+/core/storage/framework/views/
+/core/storage/logs/
+/assets/.DS_Store
+/core/.DS_Store
+/assets/files/
+/assets/sitemaps/
+*.log
+*.zip
+*.sql
+*.tmp
+Thumbs.db
+.DS_Store

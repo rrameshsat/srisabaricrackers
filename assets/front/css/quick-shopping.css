@@ -1,0 +1,462 @@
+.quick-shopping-page {
+    padding-bottom: 110px;
+}
+
+.qs-hidden {
+    display: none;
+}
+
+.qs-empty-inline {
+    color: #999;
+    font-size: 11px;
+}
+
+.qs-hero {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.qs-hero__title {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.qs-hero__subtitle {
+    color: #666;
+    margin: 0 auto;
+    max-width: 760px;
+}
+
+.qs-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.qs-summary-card {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.qs-summary-card__value {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.qs-summary-card__label {
+    font-size: 14px;
+    opacity: 0.92;
+}
+
+.qs-summary-card--products {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.qs-summary-card--items {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.qs-summary-card--total {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    color: #333;
+}
+
+.qs-summary-card--savings {
+    background: linear-gradient(135deg, #fa709a, #fee140);
+    color: #333;
+}
+
+.qs-category {
+    margin-bottom: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.qs-category__header {
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff6a00, #fccfaf);
+}
+
+.qs-category__title {
+    margin: 0;
+    flex: 1;
+    color: #222;
+    font-size: 1.2rem;
+}
+
+.qs-category__count {
+    background: rgba(255, 255, 255, 0.82);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.qs-category__body {
+    padding: 20px;
+    display: none;
+}
+
+.qs-loading,
+.qs-empty,
+.qs-error {
+    margin: 0;
+    color: #666;
+}
+
+.qs-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.qs-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.qs-table th,
+.qs-table td {
+    padding: 12px;
+    text-align: left;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.qs-table th {
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.qs-table__price,
+.qs-table__subtotal {
+    font-weight: 700;
+}
+
+.qs-table__price {
+    color: #e74c3c;
+}
+
+.qs-price-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.qs-price-main {
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+.qs-price-prev {
+    font-size: 12px;
+    font-style: italic;
+    color: #8a8a8a;
+    text-decoration: line-through;
+}
+
+.qs-table__subtotal {
+    text-align: right;
+    color: #27ae60;
+}
+
+.qs-table__stock,
+.qs-table__qty,
+.qs-table__action {
+    text-align: center;
+}
+
+.qs-stock-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.qs-stock-badge--in {
+    background: #d4edda;
+    color: #155724;
+}
+
+.qs-stock-badge--out {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.qs-qty {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qs-qty button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.qs-qty span {
+    min-width: 22px;
+    text-align: center;
+    display: inline-block;
+    font-weight: 700;
+}
+
+.qs-add-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.qs-add-btn:hover {
+    transform: translateY(-1px);
+}
+
+.qs-add-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.qs-added {
+    background: #27ae60;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: inline-block;
+}
+
+.qs-attrs {
+    min-width: 180px;
+}
+
+.qs-attr-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.qs-attr-row {
+    line-height: 1.2;
+}
+
+.qs-attr-name {
+    font-size: 10px;
+    font-style: italic;
+    font-weight: 500;
+    color: #666;
+}
+
+.qs-attr-value {
+    font-size: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+.qs-checkout-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    background: #fff;
+    border-top: 3px solid #43e97b;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.qs-checkout-bar__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.qs-checkout-bar__stat {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+}
+
+.qs-checkout-bar__stat--savings {
+    color: #27ae60;
+}
+
+.qs-checkout-bar__actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.qs-checkout-bar__btn {
+    padding: 12px 24px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 0.2s ease;
+}
+
+.qs-checkout-bar__btn:hover {
+    transform: translateY(-1px);
+}
+
+.qs-checkout-bar__btn--clear {
+    background: #f0f0f0;
+    color: #222;
+}
+
+.qs-checkout-bar__btn--proceed {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    color: #222;
+    border: none;
+}
+
+.qs-checkout-bar__btn--inactive {
+    background: #ccc !important;
+    color: #555 !important;
+    cursor: not-allowed !important;
+}
+
+@media (max-width: 991px) {
+    .qs-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .quick-shopping-page {
+        padding-bottom: 180px;
+    }
+
+    .qs-hero__title {
+        font-size: 1.7rem;
+    }
+
+    .qs-category__header {
+        padding: 14px;
+    }
+
+    .qs-category__title {
+        font-size: 1rem;
+    }
+
+    .qs-category__body {
+        padding: 14px;
+    }
+
+    .qs-table {
+        display: none;
+    }
+
+    .qs-row-card {
+        display: block;
+        background: #fff;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        padding: 14px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .qs-row-card td {
+        display: block;
+        width: auto !important;
+        background: transparent !important;
+        border: none;
+        padding: 6px 0;
+        text-align: left !important;
+    }
+
+    .qs-row-card td[data-label]:not([data-label=""]):before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 2px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #888;
+    }
+
+    .qs-row-card .cell-image {
+        float: left;
+        margin-right: 12px;
+        margin-bottom: 8px;
+    }
+
+    .qs-row-card .cell-image:before {
+        display: none !important;
+    }
+
+    .qs-row-card .cell-name {
+        clear: both;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .qs-row-card .cell-price,
+    .qs-row-card .cell-subtotal {
+        color: #e74c3c !important;
+    }
+
+    .qs-row-card .cell-stock,
+    .qs-row-card .cell-qty,
+    .qs-row-card .cell-action {
+        text-align: left !important;
+    }
+
+    .qs-checkout-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 14px;
+    }
+
+    .qs-checkout-bar__stats {
+        justify-content: center;
+        gap: 8px 14px;
+    }
+
+    .qs-checkout-bar__stat {
+        font-size: 14px;
+    }
+
+    .qs-checkout-bar__actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .qs-checkout-bar__btn {
+        flex: 1 1 140px;
+    }
+}
