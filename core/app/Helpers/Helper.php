@@ -40,9 +40,9 @@ class Helper
         else if ($link["type"] == 'campaign') {
             $href = route('front.campaign');
         }
-        else if ($link["type"] == 'quick_shopping') {
-            $href = route('front.quickshopping');
-        } 
+		else if (in_array(strtolower($link["type"]), ['quick_shopping', 'quickshopping', 'quick shopping'])) {
+			$href = route('front.quickshopping');
+		}
         else if ($link["type"] == 'brand') {
             $href = route('front.brand');
         } 

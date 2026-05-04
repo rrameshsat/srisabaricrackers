@@ -7,7 +7,6 @@
 
 <nav class="site-menu">
     <ul>
-      
         @foreach ($links as $link)
             @php
              $href = Helper::getHref($link); 
@@ -16,9 +15,27 @@
 
             @if (!array_key_exists("children",$link))
                 <li class="@if($href == URL::current() ) active  @endif">
-                    <a href="{{ $link["href"] == null ? $href : $link["href"] }}" target="{{$link["target"]}}">{{$link["text"]}}</a>
-                </li>
-            @else
+					@php
+						$finalHref = $href;
+						if ($finalHref === '#' && !empty($link['text'])) {
+							$text = strtolower(trim($link['text']));
+							if ($text === 'quick shopping' || $text === 'quickshopping') {
+								$finalHref = route('front.quickshopping');
+							} elseif ($text === 'home') {
+								$finalHref = route('front.index');
+							} elseif ($text === 'shop') {
+								$finalHref = route('front.catalog');
+							} elseif ($text === 'campaign') {
+								$finalHref = route('front.campaign');
+							}
+						}
+						if (!empty($link['href']) && (strpos($link['href'], '/') === 0 || strpos($link['href'], 'http') === 0)) {
+							$finalHref = $link['href'];
+						}
+					@endphp
+					<a href="{{ $finalHref }}" target="{{ $link['target'] }}">{{ $link["text"] }}</a>                
+				</li>
+				@else
                 <li class="t-h-dropdown">
                     <a class="main-link" href="{{$href}}" {{$link["target"]}}>{{$link["text"]}}<i class="icon-chevron-down"></i></a>
 

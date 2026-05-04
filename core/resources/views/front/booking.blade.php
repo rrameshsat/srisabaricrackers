@@ -47,8 +47,9 @@
 
 <script>
 var state = { categories: [], products: {}, cart: {} };
-var BASE_PATH = '/sscrackers';
+var BASE_PATH = '{{ rtrim(url('/'), '/') }}';
 var API_BASE = BASE_PATH + '/quickshopping';
+var CHECKOUT_URL = '{{ route("front.checkout") }}';
 
 function formatPrice(price) {
     return '\u20B9' + Number(price || 0).toFixed(2);
@@ -261,7 +262,7 @@ function loadProducts(catId) {
                 var previousPrice = parseFloat(p.previous_price || 0);
                 var subtotal = qty * itemPrice;
                 var inStock = p.stock > 0;
-                var imgSrc = (p.thumbnail || p.image) ? '/sscrackers/core/public/storage/images/' + (p.thumbnail || p.image) : '/sscrackers/core/public/storage/images/placeholder.png';
+				var imgSrc = (p.thumbnail || p.image) ? '{{ url('/') }}/core/public/storage/images/' + (p.thumbnail || p.image) : '{{ url('/') }}/core/public/storage/images/placeholder.png';
                 var attrHtml = buildAttributeDisplay(p.attributes, selectedAttrs);
 
                 html += '<tr class="product-row qs-row-card" data-name="' + p.name + '" data-price="' + formatPrice(itemPrice) + '" data-stock="' + (inStock ? 'In Stock' : 'Out of Stock') + '" data-qty="' + qty + '" data-subtotal="' + formatPrice(subtotal) + '" data-added="' + (qty > 0 ? 'true' : 'false') + '" data-instock="' + (inStock ? 'true' : 'false') + '" data-id="' + p.id + '" data-product-attrs="' + encodeURIComponent(JSON.stringify(p.attributes || [])) + '" data-attrs="' + encodeURIComponent(JSON.stringify(selectedAttrs)) + '">';
@@ -405,7 +406,7 @@ function proceedToCheckout() {
 
     fetchJSON(API_BASE + '-cart-transfer', { method: 'POST' }).then(function(data) {
         if (data.success) {
-            window.location.href = BASE_PATH + '/checkout';
+            window.location.href = CHECKOUT_URL;
         } else {
             alert(data.message || 'Failed to transfer cart');
         }
