@@ -21,7 +21,14 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-require __DIR__.'/core/vendor/autoload.php';
+// Guard for missing vendor autoload
+$autoloadPath = __DIR__ . '/core/vendor/autoload.php';
+if (!file_exists($autoloadPath)) {
+    http_response_code(500);
+    echo "<h1>Dependencies missing</h1><p>Autoload not found: {$autoloadPath}. Run <code>composer install</code> in the core directory to install dependencies.</p>";
+    exit;
+}
+require $autoloadPath;
 
 /*
 |--------------------------------------------------------------------------
